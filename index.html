@@ -24,7 +24,13 @@
     <!-- ADICIONAR GASTO -->
     <section class="card">
       <input type="text" id="descricao" placeholder="Descrição do gasto">
-      <input type="number" id="valor" placeholder="Valor (R$)">
+      <input
+        type="number"
+        id="valor"
+        placeholder="Valor (R$)"
+        step="0.01"
+        inputmode="decimal"
+      >
       <button onclick="adicionarGasto()">Adicionar gasto</button>
     </section>
 
@@ -44,3 +50,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
