@@ -11,21 +11,20 @@ window.onload = () => {
 function adicionarGasto() {
   const descricao = document.getElementById("descricao").value.trim();
   const valorInput = document.getElementById("valor").value;
+  const mes = document.getElementById("mes").value;
 
-  if (!descricao || valorInput === "") {
-    alert("Preencha corretamente");
+  if (!descricao || valorInput === "" || !mes) {
+    alert("Preencha todos os campos");
     return;
   }
 
   const valor = parseFloat(valorInput);
-  const data = new Date();
-  const mesAno = data.toISOString().slice(0, 7);
 
   gastos.push({
-    id: Date.now(), // ID ÚNICO
+    id: Date.now(),
     descricao,
     valor,
-    mesAno
+    mesAno: mes // ✅ USA O MÊS SELECIONADO
   });
 
   document.getElementById("descricao").value = "";
