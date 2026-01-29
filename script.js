@@ -1,11 +1,10 @@
 let gastos = [];
-let mesSelecionado = "";
 
 window.onload = () => {
   const hoje = new Date();
   const mesAtual = hoje.toISOString().slice(0, 7);
   document.getElementById("mes").value = mesAtual;
-  mesSelecionado = mesAtual;
+  filtrarPorMes();
 };
 
 function adicionarGasto() {
@@ -18,13 +17,18 @@ function adicionarGasto() {
     return;
   }
 
-  const valor = parseFloat(valorInput);
+  const valor = parseFloat(valorInput.replace(",", "."));
+
+  if (isNaN(valor)) {
+    alert("Digite um valor válido, exemplo: 10,50");
+    return;
+  }
 
   gastos.push({
     id: Date.now(),
     descricao,
     valor,
-    mesAno: mes // ✅ USA O MÊS SELECIONADO
+    mesAno: mes
   });
 
   document.getElementById("descricao").value = "";
@@ -34,7 +38,7 @@ function adicionarGasto() {
 }
 
 function filtrarPorMes() {
-  mesSelecionado = document.getElementById("mes").value;
+  const mesSelecionado = document.getElementById("mes").value;
   const lista = document.getElementById("lista-gastos");
   lista.innerHTML = "";
 
@@ -48,15 +52,16 @@ function filtrarPorMes() {
       const li = document.createElement("li");
 
       li.innerHTML = `
-        <span>${gasto.descricao} — R$ ${gasto.valor.toFixed(2).replace('.', ',')}</span>
-        <button class="excluir" onclick="excluirGasto(${gasto.id})">×</button>
+        <span>${gasto.descricao}</span>
+        <span>R$ ${gasto.valor.toFixed(2).replace(".", ",")}</span>
+        <button onclick="excluirGasto(${gasto.id})">×</button>
       `;
 
       lista.appendChild(li);
     });
 
   document.getElementById("total").innerText =
-    total.toFixed(2).replace('.', ',');
+    total.toFixed(2).replace(".", ",");
 }
 
 function excluirGasto(id) {
