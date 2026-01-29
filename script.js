@@ -1,41 +1,59 @@
 let gastos = [];
-let total = 0;
+let mesSelecionado = "";
 
+// QUANDO A PÁGINA ABRIR
+window.onload = () => {
+  const hoje = new Date();
+  const mesAtual = hoje.toISOString().slice(0, 7);
+  document.getElementById("mes").value = mesAtual;
+  mesSelecionado = mesAtual;
+};
+
+// ADICIONAR GASTO
 function adicionarGasto() {
-  const descricaoInput = document.getElementById("descricao");
-  const valorInput = document.getElementById("valor");
-
-  const descricao = descricaoInput.value.trim();
-  const valor = parseFloat(valorInput.value);
+  const descricao = document.getElementById("descricao").value.trim();
+  const valor = parseFloat(document.getElementById("valor").value);
 
   if (!descricao || isNaN(valor)) {
-    alert("Preencha corretamente os campos");
+    alert("Preencha corretamente");
     return;
   }
 
-  gastos.push({ descricao, valor });
-  total += valor;
+  const data = new Date();
+  const mesAno = data.toISOString().slice(0, 7);
 
-  atualizarTela();
+  gastos.push({
+    descricao,
+    valor,
+    mesAno
+  });
 
-  descricaoInput.value = "";
-  valorInput.value = "";
+  document.getElementById("descricao").value = "";
+  document.getElementById("valor").value = "";
+
+  filtrarPorMes();
 }
 
-function atualizarTela() {
+// FILTRAR POR MÊS
+function filtrarPorMes() {
+  mesSelecionado = document.getElementById("mes").value;
   const lista = document.getElementById("lista-gastos");
   lista.innerHTML = "";
 
-  gastos.forEach(gasto => {
-    const li = document.createElement("li");
+  let total = 0;
 
-    li.innerHTML = `
-      <span>${gasto.descricao}</span>
-      <span>R$ ${gasto.valor.toFixed(2)}</span>
-    `;
+  gastos
+    .filter(gasto => gasto.mesAno === mesSelecionado)
+    .forEach(gasto => {
+      total += gasto.valor;
 
-    lista.appendChild(li);
-  });
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span>${gasto.descricao}</span>
+        <span>R$ ${gasto.valor.toFixed(2)}</span>
+      `;
+      lista.appendChild(li);
+    });
 
   document.getElementById("total").innerText = total.toFixed(2);
 }
