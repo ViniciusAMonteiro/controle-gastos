@@ -18,11 +18,11 @@ function adicionarGasto() {
   }
 
   const valor = parseFloat(valorInput);
-
   const data = new Date();
   const mesAno = data.toISOString().slice(0, 7);
 
   gastos.push({
+    id: Date.now(), // ID ÚNICO
     descricao,
     valor,
     mesAno
@@ -47,13 +47,20 @@ function filtrarPorMes() {
       total += gasto.valor;
 
       const li = document.createElement("li");
+
       li.innerHTML = `
-        <span>${gasto.descricao}</span>
-        <span>R$ ${gasto.valor.toFixed(2).replace('.', ',')}</span>
+        <span>${gasto.descricao} — R$ ${gasto.valor.toFixed(2).replace('.', ',')}</span>
+        <button class="excluir" onclick="excluirGasto(${gasto.id})">×</button>
       `;
+
       lista.appendChild(li);
     });
 
   document.getElementById("total").innerText =
     total.toFixed(2).replace('.', ',');
+}
+
+function excluirGasto(id) {
+  gastos = gastos.filter(gasto => gasto.id !== id);
+  filtrarPorMes();
 }
