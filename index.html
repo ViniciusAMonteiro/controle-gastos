@@ -3,39 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Controle de Gastos</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#2c2c2c">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>💸 Controle de Gastos</h1>
+  <header class="header">
+    <h1>Controle de Gastos</h1>
+    <p>Organize sua vida financeira</p>
+  </header>
 
-  <form id="form-gasto">
-    <input type="text" id="descricao" placeholder="Descrição" required>
-    <input type="number" id="valor" placeholder="Valor" required>
-    <input type="date" id="data" required>
-    <button type="submit">Adicionar</button>
-  </form>
+  <main class="container">
 
-  <h2>Total geral: R$ <span id="total">0.00</span></h2>
+    <section class="card">
+      <input type="text" id="descricao" placeholder="Descrição">
+      <input type="number" id="valor" placeholder="Valor (R$)">
+      <button onclick="adicionarGasto()">Adicionar gasto</button>
+    </section>
 
-  <ul id="lista-gastos"></ul>
+    <section class="card">
+      <h2>Gastos</h2>
+      <ul id="lista-gastos"></ul>
+    </section>
 
-  <h2>📊 Resumo mensal</h2>
-  <ul id="resumo-mensal"></ul>
+  </main>
 
-  <h2>📈 Gráfico mensal</h2>
-  <canvas id="graficoMensal"></canvas>
+  <footer class="footer">
+    <span>Total</span>
+    <strong>R$ <span id="total">0.00</span></strong>
+  </footer>
 
   <script src="script.js"></script>
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js");
-  }
-</script>
 </body>
 </html>
