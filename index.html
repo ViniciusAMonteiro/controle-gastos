@@ -1,53 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Controle de Gastos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header class="header">
+  <header>
     <h1>Controle de Gastos</h1>
     <p>Resumo mensal dos seus gastos</p>
   </header>
 
-  <main class="container">
+  <main>
 
-    <!-- SELETOR DE MÊS -->
     <section class="card">
       <label for="mes">Mês:</label>
       <input type="month" id="mes" onchange="filtrarPorMes()">
     </section>
 
-    <!-- ADICIONAR GASTO -->
     <section class="card">
-      <input type="text" id="descricao" placeholder="Descrição do gasto">
+      <input id="descricao" placeholder="Descrição do gasto">
       <input
-        type="number"
         id="valor"
         placeholder="Valor (R$)"
-        step="0.01"
         inputmode="decimal"
       >
       <button onclick="adicionarGasto()">Adicionar gasto</button>
     </section>
 
-    <!-- LISTA -->
     <section class="card">
       <h2>Gastos do mês</h2>
       <ul id="lista-gastos"></ul>
+
+      <div class="total">
+        Total: R$ <span id="total">0,00</span>
+      </div>
     </section>
 
   </main>
 
-  <footer class="footer">
-    <span>Total do mês</span>
-    <strong>R$ <span id="total">0.00</span></strong>
-  </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
-
