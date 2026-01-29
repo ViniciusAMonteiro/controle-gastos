@@ -4,33 +4,40 @@
   <meta charset="UTF-8">
   <title>Controle de Gastos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header class="header">
     <h1>Controle de Gastos</h1>
-    <p>Organize sua vida financeira</p>
+    <p>Resumo mensal dos seus gastos</p>
   </header>
 
   <main class="container">
 
+    <!-- SELETOR DE MÊS -->
     <section class="card">
-      <input type="text" id="descricao" placeholder="Descrição">
+      <label for="mes">Mês:</label>
+      <input type="month" id="mes" onchange="filtrarPorMes()">
+    </section>
+
+    <!-- ADICIONAR GASTO -->
+    <section class="card">
+      <input type="text" id="descricao" placeholder="Descrição do gasto">
       <input type="number" id="valor" placeholder="Valor (R$)">
       <button onclick="adicionarGasto()">Adicionar gasto</button>
     </section>
 
+    <!-- LISTA -->
     <section class="card">
-      <h2>Gastos</h2>
+      <h2>Gastos do mês</h2>
       <ul id="lista-gastos"></ul>
     </section>
 
   </main>
 
   <footer class="footer">
-    <span>Total</span>
+    <span>Total do mês</span>
     <strong>R$ <span id="total">0.00</span></strong>
   </footer>
 
