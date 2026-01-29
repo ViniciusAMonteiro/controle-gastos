@@ -9,7 +9,6 @@ body {
   color: #333;
 }
 
-/* HEADER */
 .header {
   background: linear-gradient(135deg, #4CAF50, #43a047);
   color: white;
@@ -17,25 +16,12 @@ body {
   text-align: center;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 22px;
-}
-
-.header p {
-  margin-top: 6px;
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-/* CONTAINER */
 .container {
   max-width: 420px;
   margin: -20px auto 80px;
   padding: 0 16px;
 }
 
-/* CARD */
 .card {
   background: white;
   border-radius: 14px;
@@ -44,12 +30,6 @@ body {
   box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
-.card h2 {
-  margin-top: 0;
-  font-size: 16px;
-}
-
-/* INPUTS */
 input {
   width: 100%;
   padding: 14px;
@@ -59,7 +39,6 @@ input {
   font-size: 15px;
 }
 
-/* BOTÃO */
 button {
   width: 100%;
   padding: 14px;
@@ -72,11 +51,6 @@ button {
   cursor: pointer;
 }
 
-button:active {
-  transform: scale(0.98);
-}
-
-/* LISTA */
 ul {
   list-style: none;
   padding: 0;
@@ -86,15 +60,23 @@ ul {
 li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 12px 0;
   border-bottom: 1px solid #eee;
 }
 
-li span:last-child {
+/* BOTÃO EXCLUIR */
+.excluir {
+  background: #e53935;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
   font-weight: bold;
 }
 
-/* FOOTER FIXO */
 .footer {
   position: fixed;
   bottom: 0;
@@ -105,5 +87,4 @@ li span:last-child {
   display: flex;
   justify-content: space-between;
   font-size: 16px;
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
 }
