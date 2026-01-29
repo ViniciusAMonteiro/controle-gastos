@@ -1,7 +1,6 @@
 let gastos = [];
 let mesSelecionado = "";
 
-// QUANDO A PÁGINA ABRIR
 window.onload = () => {
   const hoje = new Date();
   const mesAtual = hoje.toISOString().slice(0, 7);
@@ -9,15 +8,16 @@ window.onload = () => {
   mesSelecionado = mesAtual;
 };
 
-// ADICIONAR GASTO
 function adicionarGasto() {
   const descricao = document.getElementById("descricao").value.trim();
-  const valor = parseFloat(document.getElementById("valor").value);
+  const valorInput = document.getElementById("valor").value;
 
-  if (!descricao || isNaN(valor)) {
+  if (!descricao || valorInput === "") {
     alert("Preencha corretamente");
     return;
   }
+
+  const valor = parseFloat(valorInput);
 
   const data = new Date();
   const mesAno = data.toISOString().slice(0, 7);
@@ -34,7 +34,6 @@ function adicionarGasto() {
   filtrarPorMes();
 }
 
-// FILTRAR POR MÊS
 function filtrarPorMes() {
   mesSelecionado = document.getElementById("mes").value;
   const lista = document.getElementById("lista-gastos");
@@ -50,10 +49,11 @@ function filtrarPorMes() {
       const li = document.createElement("li");
       li.innerHTML = `
         <span>${gasto.descricao}</span>
-        <span>R$ ${gasto.valor.toFixed(2)}</span>
+        <span>R$ ${gasto.valor.toFixed(2).replace('.', ',')}</span>
       `;
       lista.appendChild(li);
     });
 
-  document.getElementById("total").innerText = total.toFixed(2);
+  document.getElementById("total").innerText =
+    total.toFixed(2).replace('.', ',');
 }
